@@ -7,47 +7,47 @@ const clearBtn = document.getElementById('clear__button')
 // refresh
 
 formButton.addEventListener('click', (e) => {
-    e.preventDefault()
-    reload()
-    clearBtn.classList.remove('hidden')
+  e.preventDefault()
+  reload()
+  clearBtn.classList.remove('hidden')
 
 })
 
 // clear
 
 clearBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    user.innerHTML = ''
-    clearBtn.classList.add('hidden')
+  e.preventDefault()
+  user.innerHTML = ''
+  clearBtn.classList.add('hidden')
 })
 
 
 // form
 
 form['form__input'].addEventListener('input', () => {
-    const inputvalue = form['form__input'].value.toLocaleLowerCase()
-    const name = document.querySelectorAll('.user__name')
-    console.log(name);
+  const inputvalue = form['form__input'].value.toLocaleLowerCase()
+  const name = document.querySelectorAll('.user__name')
+  console.log(name);
 
 
-    name.forEach((item) => {
-        if (item.lastElementChild.textContent.toLocaleLowerCase().includes(inputvalue)) {
-            item.parentElement.classList.remove('hidden')
-        } else {
-            item.parentElement.classList.add('hidden')
+  name.forEach((item) => {
+    if (item.lastElementChild.textContent.toLocaleLowerCase().includes(inputvalue)) {
+      item.parentElement.classList.remove('hidden')
+    } else {
+      item.parentElement.classList.add('hidden')
 
-        }
-    })
+    }
+  })
 
 })
 
 const updateUi = (data) => {
-    console.log('updateui', data);
-    user.innerHTML = ''
-    data.forEach(item => {
-        const { gender, name, picture, location, dob } = item
+  console.log('updateui', data);
+  user.innerHTML = ''
+  data.forEach(item => {
+    const { gender, name, picture, location, dob } = item
 
-        user.innerHTML += `
+    user.innerHTML += `
         
         <li class="user__item">
             <button id="delete__btn" class="user__delete--btn">
@@ -77,20 +77,25 @@ const updateUi = (data) => {
         
         `
 
-    });
+  });
 }
 
 
 
 
-document.addEventListener('click',(e)=>{
-    if(e.target.classList[0]==='.user__delete--btn'){
-        e.target.parentElement.remove()
-    }
+document.addEventListener('click', (e) => {
+  if (e.target.classList[0] === 'user__delete--btn') {
+    e.target.parentElement.remove()
+  }
 
-    if(!user.children.length){
-        clearBtn.classList.add('hidden')
-    }
+  if (!user.children.length) {
+    clearBtn.classList.add('hidden')
+  }else{
+        clearBtn.classList.remove('hidden')
+
+  }
+
+
 })
 
 
